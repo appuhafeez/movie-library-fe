@@ -1,13 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { render } from "react-dom";
 import axios from "../config/axios";
 import "./Row.css";
+import RowItem from "./RowItem";
 
 const baseURL = "https://image.tmdb.org/t/p/original/";
 
+const sideScroll = (
+  element: HTMLDivElement,
+  speed: number,
+  distance: number,
+  step: number
+) => {
+  let scrollAmount = 0;
+  const slideTimer = setInterval(() => {
+    element.scrollLeft += step;
+    scrollAmount += Math.abs(step);
+    if (scrollAmount >= distance) {
+      clearInterval(slideTimer);
+    }
+  }, speed);
+};
+
 function Row({ title, fetchUrl, isLargeRow }) {
   const [movies, setMovies] = useState([]);
-
   // A snippet of code which runs on specific conditon
+
+  const contentWrapper = React.useRef(null);
 
   useEffect(() => {
     // if [], run once when row loads, if variable is added it runs whenever it changes
@@ -23,20 +42,38 @@ function Row({ title, fetchUrl, isLargeRow }) {
   return (
     <div className="row">
       <h2>{title}</h2>
-      <div className="row__posters">
-        {/* row posters */}
-        {movies.map((movie) => (
-          <img
-            key={movie.id}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            src={`${baseURL}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.name}
-          />
-        ))}
+      <div className="scroll__buttons_div">
+        <button
+          className="scroll__buttons"
+          onClick={() => {
+            sideScroll(contentWrapper.current, 10, 200, -10);
+          }}
+        >
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </button>
+        <div className="row__posters" ref={contentWrapper}>
+          {/* row posters */}
+
+          {movies.map((movie) => (
+            <RowItem
+              key={movie.id}
+              isLargeRow={isLargeRow}
+              imageUrl={`${baseURL}${
+                isLargeRow ? movie.poster_path : movie.backdrop_path
+              }`}
+              movie={movie}
+            />
+          ))}
+        </div>
+        <button
+          className="scroll__buttons"
+          onClick={() => {
+            sideScroll(contentWrapper.current, 10, 200, 10);
+          }}
+        >
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </button>
       </div>
-      {/* content posters */}
     </div>
   );
 }

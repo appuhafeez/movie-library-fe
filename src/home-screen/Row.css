@@ -1,35 +1,109 @@
 .row {
   color: white;
-  margin-left: 20px;
+
+  margin-right: 20px;
+}
+
+.scroll__buttons_div {
+  display: flex;
+}
+
+.scroll__buttons {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: x-small;
+  font-weight: 500;
+  border-radius: 0.2vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: white;
+  display: inline;
+  margin: 2px;
+  background: transparent;
 }
 
 .row__posters {
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  padding: 20px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 .row__posters::-webkit-scrollbar {
   display: none;
 }
 
-.row__poster {
+.row__element {
+  border-radius: 10px;
   object-fit: contain;
   width: 100%;
-  max-height: 100px;
+  height: 100px;
   margin-right: 10px;
+  padding-left: 100px;
+  padding-right: 100px;
   transition-duration: 450ms;
 }
-
-.row__poster:hover {
-  transform: scale(1.08);
+.row__element:hover {
+  transform: scale(1.2);
+}
+.row__elementLarge {
+  height: 250px;
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
-.row__posterLarge {
-  max-height: 250px;
+.row__button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  font-size: x-small;
+  font-weight: 500;
+  border-radius: 0.2vw;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: white;
+  display: inline;
+  margin: 2px;
+  background-color: #000010;
+  transition: all 0.2s;
+  transition-duration: "450ms";
 }
 
-.row__posterLarge:hover {
-  transform: scale(1.09);
+.row__info_div {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.row__info_divLarge {
+  padding-bottom: 2px;
+}
+
+.row__header {
+  padding-left: 10px;
+  font-size: small;
+}
+
+.fad__top {
+  height: 2rem;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37, 37, 37, 0.61),
+    #111
+  );
+}
+
+.fad__background {
+  background-color: #111;
 }
