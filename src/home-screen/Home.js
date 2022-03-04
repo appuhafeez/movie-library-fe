@@ -3,10 +3,11 @@ import Nav from "../Nav";
 import Banner from "./Banner";
 import Row from "./Row";
 import requests from "../util/request";
+import "./../App.css";
 
 function Home() {
   return (
-    <div>
+    <div className="app">
       <Nav />
       <Banner />
       <Row

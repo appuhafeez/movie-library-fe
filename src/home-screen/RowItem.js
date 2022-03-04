@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import "./Row.css";
 import "font-awesome/css/font-awesome.min.css";
+import { useNavigate } from "react-router-dom";
 
 function RowItem({ isLargeRow, imageUrl, movie }) {
   const [isHovered, setHover] = useState(false);
+  const navigate = useNavigate();
+
+  const goToMovie = (path) => {
+    navigate(path);
+  };
+
   return (
     <div
       className={`row__element ${isLargeRow && "row__elementLarge"} `}
@@ -31,7 +38,10 @@ function RowItem({ isLargeRow, imageUrl, movie }) {
               <button className="row__button">
                 <i className="fa fa-play"></i> Trailer
               </button>
-              <button className="row__button">
+              <button
+                className="row__button"
+                onClick={() => goToMovie(`/movie/${movie.id}`)}
+              >
                 <i className="fa fa-info-circle"></i> Details
               </button>
             </div>

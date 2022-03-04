@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { render } from "react-dom";
 import axios from "../config/axios";
 import "./Row.css";
 import RowItem from "./RowItem";
@@ -38,7 +37,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     fetchData();
   }, [fetchUrl]);
 
-  //console.table(movies);
+  console.table(movies);
   return (
     <div className="row">
       <h2>{title}</h2>
