@@ -3,7 +3,7 @@ import "./Row.css";
 import "font-awesome/css/font-awesome.min.css";
 import { useNavigate } from "react-router-dom";
 
-function RowItem({ isLargeRow, imageUrl, movie }) {
+function RowItem({ isLargeRow, imageUrl, movie, mediaType }) {
   const [isHovered, setHover] = useState(false);
   const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ function RowItem({ isLargeRow, imageUrl, movie }) {
               </button>
               <button
                 className="row__button"
-                onClick={() => goToMovie(`/movie/${movie.id}`)}
+                onClick={() => goToMovie(`/${mediaType}/${movie.id}`)}
               >
                 <i className="fa fa-info-circle"></i> Details
               </button>

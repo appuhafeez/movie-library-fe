@@ -3,15 +3,10 @@ import "./MovieBanner.css";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const baseURL = "https://image.tmdb.org/t/p/w500";
+const baseURL = process.env.REACT_APP_TMDB_IMG_URL;
 function MovieBanner({ movie }) {
   function truncate(str, n) {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
-
-  function combineAll(movieChar) {
-    console.log("movie char");
-    return movieChar.map(({ name }) => name).join(", ");
   }
 
   console.log(movie);
@@ -29,28 +24,37 @@ function MovieBanner({ movie }) {
           <div className="short_description">
             <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
             <div className="row">
-              <div className="col-sm-1">
-                <CircularProgressbar
-                  className="progress_bar"
-                  value={movie.vote_average * 10}
-                  text={`${movie.vote_average * 10}%`}
-                  styles={buildStyles({
-                    pathColor: "#009900",
-                    textColor: "#009900",
-                  })}
-                ></CircularProgressbar>
+              <div className="row">
+                <div className="col-4 progress_bar">
+                  <CircularProgressbar
+                    value={movie.vote_average * 10}
+                    text={`${movie.vote_average * 10}%`}
+                    styles={buildStyles({
+                      pathColor: "#009900",
+                      textColor: "#009900",
+                      textSize: "30px",
+                      pathTransitionDuration: "0.7",
+                    })}
+                  ></CircularProgressbar>
+                </div>
+                <div className="col-8">
+                  <h1 className="release_date">
+                    Release date: {movie?.release_date}
+                  </h1>
+                </div>
               </div>
-              <h1 className="col-sm-2 release_date">{movie?.release_date}</h1>
-              <h1 className="col-sm-6 movie_genre">
-                {movie.genres && movie.genres.length > 0
-                  ? movie.genres
-                      .map((movieGenres) => movieGenres.name)
-                      .join(", ")
-                  : ""}
-              </h1>
-              <h1 className="col-sm-3 movie_genre">
-                Runtime: {movie.runtime} min
-              </h1>
+              <div className="row">
+                <h1 className="col-sm-6 movie_genre">
+                  {movie.genres && movie.genres.length > 0
+                    ? movie.genres
+                        .map((movieGenres) => movieGenres.name)
+                        .join(", ")
+                    : ""}
+                </h1>
+                <h1 className="col-sm-6 movie_genre">
+                  Runtime: {movie.runtime} min
+                </h1>
+              </div>
             </div>
             <h3>Overview</h3>
             <div className="overview_movie">

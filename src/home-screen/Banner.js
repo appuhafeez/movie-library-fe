@@ -29,7 +29,7 @@ function Banner() {
       style={{
         backgroundSize: "cover",
         backgroundImage: `url(
-                "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
+                "${process.env.REACT_APP_TMDB_IMG_URL}/${movie?.backdrop_path}"
             )`,
         backgroundPosition: "center center",
       }}

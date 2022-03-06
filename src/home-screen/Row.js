@@ -3,7 +3,7 @@ import axios from "../config/axios";
 import "./Row.css";
 import RowItem from "./RowItem";
 
-const baseURL = "https://image.tmdb.org/t/p/original/";
+const baseURL = process.env.REACT_APP_TMDB_IMG_URL;
 
 const sideScroll = (
   element: HTMLDivElement,
@@ -21,7 +21,7 @@ const sideScroll = (
   }, speed);
 };
 
-function Row({ title, fetchUrl, isLargeRow }) {
+function Row({ title, fetchUrl, isLargeRow, mediaType }) {
   const [movies, setMovies] = useState([]);
   // A snippet of code which runs on specific conditon
 
@@ -61,6 +61,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
                 isLargeRow ? movie.poster_path : movie.backdrop_path
               }`}
               movie={movie}
+              mediaType={mediaType !== undefined ? mediaType : movie.media_type}
             />
           ))}
         </div>

@@ -4,7 +4,7 @@ import MovieBanner from "./MovieBanner";
 import axios from "../config/axios";
 import "./movie.css";
 
-const API_KEY = "a2a8fa0d440ebd1550488d032bb35db5";
+const API_KEY = process.env.REACT_APP_TMDB_CLIENT_ID;
 
 function Movie() {
   let params = useParams();
@@ -29,7 +29,7 @@ function Movie() {
       style={{
         backgroundSize: "cover",
         backgroundImage: `url(
-              "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
+              "${process.env.REACT_APP_TMDB_IMG_URL}/${movie?.backdrop_path}"
           )`,
         backgroundPosition: "center center",
       }}
