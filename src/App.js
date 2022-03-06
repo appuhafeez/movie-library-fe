@@ -8,7 +8,8 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home />}></Route>
-      <Route path="/movie/:movieId" element={[<Movie />]}></Route>
+      <Route path="/movie/:movieId" element={[<Movie type="movie" />]}></Route>
+      <Route path="/tv/:movieId" element={[<Movie type="tv" />]}></Route>
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

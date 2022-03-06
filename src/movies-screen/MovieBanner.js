@@ -4,7 +4,7 @@ import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const baseURL = process.env.REACT_APP_TMDB_IMG_URL;
-function MovieBanner({ movie }) {
+function MovieBanner({ movie, isTvSeries }) {
   function truncate(str, n) {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
   }
@@ -39,7 +39,9 @@ function MovieBanner({ movie }) {
                 </div>
                 <div className="col-8">
                   <h1 className="release_date">
-                    Release date: {movie?.release_date}
+                    {isTvSeries
+                      ? `Initial release date:  ${movie?.first_air_date}`
+                      : `Release date: ${movie?.release_date}`}
                   </h1>
                 </div>
               </div>
@@ -52,7 +54,9 @@ function MovieBanner({ movie }) {
                     : ""}
                 </h1>
                 <h1 className="col-sm-6 movie_genre">
-                  Runtime: {movie.runtime} min
+                  {isTvSeries
+                    ? `Number of seasons: ${movie?.number_of_seasons}`
+                    : `Runtime: ${movie.runtime} min`}
                 </h1>
               </div>
             </div>

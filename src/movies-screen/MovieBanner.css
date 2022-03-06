@@ -3,7 +3,7 @@
   max-height: 500px;
   position: center;
   padding: 10px;
-  padding-right: 50px;
+  padding-right: 30px;
 }
 .short_description {
   color: white;
@@ -40,6 +40,7 @@
   font-size: 0.7rem;
 }
 .progress_bar {
+  padding-top: 5px;
   color: white;
   width: 70px;
   height: 70px;

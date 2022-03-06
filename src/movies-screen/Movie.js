@@ -6,17 +6,20 @@ import "./movie.css";
 
 const API_KEY = process.env.REACT_APP_TMDB_CLIENT_ID;
 
-function Movie() {
+function Movie({ type }) {
   let params = useParams();
 
   const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const fetchUrl = `/movie/${params.movieId}?api_key=${API_KEY}&language=en-US`;
+      let fetchUrl = `/movie/${params.movieId}?api_key=${API_KEY}&language=en-US`;
+      if (type === "tv") {
+        fetchUrl = `/tv/${params.movieId}?api_key=${API_KEY}&language=en-US`;
+      }
       const request = await axios.get(fetchUrl);
       setMovie(request.data);
-      //console.log(request);
+      console.log(request);
       return request;
     }
     fetchData();
@@ -40,6 +43,7 @@ function Movie() {
           key={`${params.movieId}`}
           movie={movie}
           apiKey={`${API_KEY}`}
+          isTvSeries={type === "tv" ? true : false}
         />
       </div>
     </div>
