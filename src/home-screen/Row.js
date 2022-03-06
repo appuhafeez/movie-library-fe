@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserView } from "react-device-detect";
 import axios from "../config/axios";
 import "./Row.css";
 import RowItem from "./RowItem";
@@ -42,14 +43,16 @@ function Row({ title, fetchUrl, isLargeRow, mediaType }) {
     <div className="row">
       <h2>{title}</h2>
       <div className="scroll__buttons_div">
-        <button
-          className="scroll__buttons"
-          onClick={() => {
-            sideScroll(contentWrapper.current, 10, 200, -10);
-          }}
-        >
-          <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        </button>
+        <BrowserView className="scroll__buttons">
+          <button
+            className="scroll__buttons"
+            onClick={() => {
+              sideScroll(contentWrapper.current, 10, 200, -10);
+            }}
+          >
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+        </BrowserView>
         <div className="row__posters" ref={contentWrapper}>
           {/* row posters */}
 
@@ -65,14 +68,16 @@ function Row({ title, fetchUrl, isLargeRow, mediaType }) {
             />
           ))}
         </div>
-        <button
-          className="scroll__buttons"
-          onClick={() => {
-            sideScroll(contentWrapper.current, 10, 200, 10);
-          }}
-        >
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        </button>
+        <BrowserView className="scroll__buttons">
+          <button
+            className="scroll__buttons"
+            onClick={() => {
+              sideScroll(contentWrapper.current, 10, 200, 10);
+            }}
+          >
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </BrowserView>
       </div>
     </div>
   );
