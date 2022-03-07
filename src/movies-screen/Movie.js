@@ -37,15 +37,17 @@ function Movie({ type }) {
         backgroundPosition: "center center",
       }}
     >
-      <div className="gradient_view">
-        <div className="movie_poster_div">Image : {params.movieId}</div>
-        <MovieBanner
-          key={`${params.movieId}`}
-          movie={movie}
-          apiKey={`${API_KEY}`}
-          isTvSeries={type === "tv" ? true : false}
-        />
-      </div>
+      {movie && (
+        <div className="gradient_view">
+          <div className="movie_poster_div">Image : {params.movieId}</div>
+          <MovieBanner
+            key={`${params.movieId}`}
+            movie={movie}
+            apiKey={`${API_KEY}`}
+            isTvSeries={type === "tv" ? true : false}
+          />
+        </div>
+      )}
     </div>
   );
 }

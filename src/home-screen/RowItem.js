@@ -14,7 +14,6 @@ function RowItem({ isLargeRow, imageUrl, movie, mediaType }) {
     console.log(movie);
     movieTrailer(movie?.name || movie?.title || movie?.original_name || "")
       .then((url) => {
-        console.log(url);
         console.log(new URL(url).search);
         const urlParams = new URLSearchParams(new URL(url).search).get("v");
         console.log(urlParams);

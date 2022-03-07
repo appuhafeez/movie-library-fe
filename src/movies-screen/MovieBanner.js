@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./MovieBanner.css";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import movieTrailer from "movie-trailer";
+import TrailerPopup from "../common/TrailerPopup";
 
 const baseURL = process.env.REACT_APP_TMDB_IMG_URL;
 function MovieBanner({ movie, isTvSeries }) {
+  const childRef = useRef();
   function truncate(str, n) {
     return str.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+
+  function openTrailer(movie) {
+    console.log(movie);
+    movieTrailer(movie?.name || movie?.title || movie?.original_name || "")
+      .then((url) => {
+        const urlParams = new URLSearchParams(new URL(url).search).get("v");
+        childRef.current.handleToOpenTrailer(urlParams);
+      })
+      .catch((error) => {
+        console.log(error);
+        childRef.current.handleToOpenTrailer("u3VTKvdAuIY");
+      });
   }
 
   console.log(movie);
@@ -65,9 +81,16 @@ function MovieBanner({ movie, isTvSeries }) {
               {truncate(movie?.overview || "", 500)}
             </div>
             <h1 className="tag_line">{movie?.tagline}</h1>
+            <button
+              className="banner__button"
+              onClick={() => openTrailer(movie)}
+            >
+              <i className="fa fa-play"></i> Play trailer
+            </button>
           </div>
         </div>
       </div>
+      <TrailerPopup ref={childRef}></TrailerPopup>
     </div>
   );
 }
