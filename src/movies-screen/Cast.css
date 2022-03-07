@@ -1,0 +1,29 @@
+.cast_main_div {
+  color: white;
+  display: flex;
+  cursor: pointer;
+  height: 400px;
+  padding: 10px;
+  padding-top: 20px;
+  padding-right: 0px;
+  padding-left: 20px;
+  box-shadow: 10px 10px 8px black;
+  transition: all 0.2s;
+  transition-duration: "450ms";
+}
+.cast_main_div:hover {
+  transform: scale(1.2);
+}
+.cast_main_div::-webkit-scrollbar {
+  display: none;
+}
+.img_style {
+  width: 200px;
+}
+.original_name {
+  font-size: 20px;
+}
+.char_name {
+  font-size: 18px;
+  font-weight: 100;
+}
